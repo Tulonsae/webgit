@@ -1,0 +1,11 @@
+<?php
+
+$local_config = array(
+  'projectroot'   => "/var/cache/git",
+  'sitename'      => 'Second Drawer Git server',
+  'export_ok'     => true,
+  'strict_export' => true,
+);
+
+
+?>
