@@ -1,0 +1,3 @@
+[submodule "include/glip"]
+	path = include/glip
+	url = git://github.com/patrikf/glip.git
