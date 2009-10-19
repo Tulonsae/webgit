@@ -1,12 +1,24 @@
 <?php
 
-require(realpath(dirname(__FILE__) . '/../config/default.inc'));
+error_reporting(E_ALL ^ E_NOTICE);
 
-$local_config = array();
-include(realpath(dirname(__FILE__) . '/../config/local.inc'));
+require(dirname(__FILE__) . './../include/config.php');
 
-$config = array_merge($default_config, $local_config);
+// parse the url
+// /project/object/id
 
-require('setup.php');
+// got a project
+if(isset($_GET['p'])){
+  $project = get_repo_info($config['project_root'] . '/' . $_GET['p']);
+  print_r($project);
 
-?>
+}else{ // no project, summary
+  $projects = array();
+  foreach(array_diff(scandir($config['project_root']), array('.','..')) as $project_dir) {
+    if($project = get_repo_info($config['project_root'] . '/' . $project_dir)){
+      $projects[] = $project;
+    }
+  }
+  print_r($projects);
+}
+print_r($config);
