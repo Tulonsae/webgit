@@ -22,12 +22,8 @@ if(isset($payload['request']['p']) && file_exists($config['project_root'] . '/' 
   }
 }
 switch($payload['request']['a']){
-case 'summary':
-  build_response('summary');
+case 'xxsummary':
 default:
-  if(isset($payload['request']['p'])){
-    build_response('summary');
-  } else {
-    build_response('repository');
-  }
+  $template = new Template('repository','repository',$payload);
 }
+echo $template->getHTML();

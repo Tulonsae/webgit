@@ -7,7 +7,7 @@
         <th><a class="header" href="?o=age">Last Change</a></th>
         <th></th>
       </tr>
-<?php foreach($payload['projects'] as $project) { ?>
+<?php foreach($projects as $project) { ?>
       <tr class="dark">
       <td><a class="list" href="<?php echo "/${project['name']}" ?>"><?php echo "${project['name']}" ?></a></td>
       <td><a class="list" title="<?php echo $project['description'] ?>" href="<?php echo "/${project['name']}" ?>"><?php echo $project['description'] ?></a></td>

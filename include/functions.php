@@ -14,7 +14,7 @@ function get_project_info($path) {
       } else {
         $project['visible'] = false;
       }
-      $project['git'] = new Git($path);
+      //$project['git'] = new Git($path);
       $project['name'] = basename($path);
       if(file_exists($path . '/description')){
         $project['description'] = file_get_contents($path . '/description');

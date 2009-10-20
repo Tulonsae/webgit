@@ -4,17 +4,20 @@ $config['base_path'] = realpath(dirname(__FILE__) . '/../');
 $config['include_path'] = $config['base_path'] . '/include';
 
 $default_config = array(
-  'project_root'      => "/var/cache/git",
-  'site_name'         => 'WebGIT',
-  'list'             => false,
-  'export_ok'        => false,
-  'strict_export'    => false,
-  'base_url'         => 'http' . ($_SERVER['HTTPS'] ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . '/',
-  'template_path'    => $config['base_path'] . '/templates',
-  'caching'          => true,
+  'project_root'  => "/var/cache/git",
+  'site_name'     => 'WebGIT',
+  'list'          => false,
+  'export_ok'     => false,
+  'strict_export' => false,
+  'base_url'      => 'http' . ($_SERVER['HTTPS'] ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . '/',
+  'template_path' => $config['base_path'] . '/templates',
+  'gzip_output'   => false,
+  'caching'       => false,
+  'cache_path'    => $config['base_path'] .'/cache'
 );
 
 require($config['include_path'] . '/functions.php');
+require($config['include_path'] . '/template.class.php');
 
 $config = array_merge($config, $default_config);
 
