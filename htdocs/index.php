@@ -4,21 +4,30 @@ error_reporting(E_ALL ^ E_NOTICE);
 
 require(dirname(__FILE__) . './../include/config.php');
 
+$payload = array('config' => $config);
+
 // parse the url
-// /project/object/id
+$payload['request'] = get_request();
 
 // got a project
-if(isset($_GET['p']) && file_exists($config['project_root'] . '/' . $_GET['p'])){
-  $project = get_project_info($config['project_root'] . '/' . $_GET['p']);
-  print_r($project);
+if(isset($payload['request']['p']) && file_exists($config['project_root'] . '/' . $payload['request']['p'])){
+  $payload['project'] = get_project_info($config['project_root'] . '/' . $request['p']);
 
 }else{ // no project, summary
-  $projects = array();
+  $payload['projects'] = array();
   foreach(array_diff(scandir($config['project_root']), array('.','..')) as $project_dir) {
     if($project = get_project_info($config['project_root'] . '/' . $project_dir)){
-      $projects[] = $project;
+      $payload['projects'][] = $project;
     }
   }
-  print_r($projects);
 }
-print_r($config);
+switch($payload['request']['a']){
+case 'summary':
+  build_response('summary');
+default:
+  if(isset($payload['request']['p'])){
+    build_response('summary');
+  } else {
+    build_response('repository');
+  }
+}

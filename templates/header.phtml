@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">
+  <!-- webgit interface (C) 2009, Felix Hanley <felix@seconddrawer.com.au> -->
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <meta name="generator" content="webgit glip"/>
+    <meta name="robots" content="index, nofollow"/>
+    <title><?php echo $payload['config']['site_name'] ?></title>
+    <base href="<?php echo $payload['config']['base_url'] ?>" />
+    <link rel="stylesheet" type="text/css" href="/gitweb.css"/>
+    <link rel="alternate" title="<?php echo $payload['config']['site_name'] ?> projects list" href="?a=project_index" type="text/plain; charset=utf-8" />
+    <link rel="alternate" title="<?php echo $payload['config']['site_name'] ?> projects feeds" href="?a=opml" type="text/x-opml" />
+    <link rel="shortcut icon" href="/git-favicon.png" type="image/png" />
+  </head>
+  <body>
+    <div class="page_header"> 
+      <a title="git homepage" href="http://git.or.cz/"><img src="/git-logo.png" width="72" height="27" alt="git" class="logo"/></a><a href="/">projects</a> /<?php if(isset($payload['project'])){ ?> <a href="?p=<?php echo $payload['project']['name'] ?>;a=summary"><?php echo $payload['project']['name'] ?></a> / tree<?php } ?>
+    </div>
+    <!--
+    <form method="get" action="" enctype="application/x-www-form-urlencoded"> 
+      <div class="search"> 
+        <input name="p" type="hidden" value="lahu_keyboard.git" /> 
+        <input name="a" type="hidden" value="search" /> 
+        <input name="h" type="hidden" value="03241e893ef02245552d4afc49b1bb823ad12283" /> 
+        <select name="st" > 
+          <option selected="selected" value="commit">commit</option> 
+          <option value="grep">grep</option> 
+          <option value="author">author</option> 
+          <option value="committer">committer</option> 
+          <option value="pickaxe">pickaxe</option> 
+        </select><sup><a href="?p=lahu_keyboard.git;a=search_help">?</a></sup> search:
+        <input type="text" name="s"  /> 
+        <span title="Extended regular expression"><label><input type="checkbox" name="sr" value="1" />re</label></span></div> 
+    </form> 
+    -->
+    <div class="page_nav"> 
+      <a href="?p=lahu_keyboard.git;a=summary">summary</a> | <a href="?p=lahu_keyboard.git;a=shortlog;h=03241e893ef02245552d4afc49b1bb823ad12283">shortlog</a> | <a href="?p=lahu_keyboard.git;a=log;h=03241e893ef02245552d4afc49b1bb823ad12283">log</a> | <a href="?p=lahu_keyboard.git;a=commit;h=03241e893ef02245552d4afc49b1bb823ad12283">commit</a> | <a href="?p=lahu_keyboard.git;a=commitdiff;h=03241e893ef02245552d4afc49b1bb823ad12283">commitdiff</a> | tree<br/> 
+      <a title="in format: tar.gz" href="?p=lahu_keyboard.git;a=snapshot;h=03241e893ef02245552d4afc49b1bb823ad12283;sf=tgz">snapshot</a><br/> 
+    </div> 
