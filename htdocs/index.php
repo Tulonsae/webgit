@@ -10,20 +10,17 @@ $repository = new Repository();
 // parse the url
 $payload['request'] = get_request();
 
-// got a project
-if(isset($payload['request']['p']) && file_exists($config['project_root'] . '/' . $payload['request']['p'])){
-  $payload['project'] = $repository->getProject($payload['request']['p']);
-
-}else{ // no project, summary
-  $payload['projects'] = $repository->getProjectList();
-}
-
 if(isset($payload['request']['p'])) {
+  $project = $repository->getProject($payload['request']['p']);
+
   switch($payload['request']['a']) {
   default:
+    $payload['history'] = $project->getHistory();
+    $payload['project'] = $project;
     $template = new Template('summary',$payload['request']['p'],$payload);
   }
 } else {
+  $payload['projects'] = $repository->getProjectList();
   $template = new Template('repository','repository',$payload);
 }
 echo $template->getHTML();

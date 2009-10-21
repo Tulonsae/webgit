@@ -1,5 +1,9 @@
     <div class="page_footer">
-      <a class="rss_logo" href="?a=opml">OPML</a> <a class="rss_logo" href="?a=project_index">TXT</a>
+<?php if(isset($project['description'])){ ?>
+      <div class="page_footer_text"><?php echo $project['description'] ?></div>
+<?php } ?>
+      <a class="rss_logo" href="?a=opml">OPML</a>
+      <a class="rss_logo" href="?a=project_index">TXT</a>
     </div>
   </body>
 </html>

@@ -7,13 +7,13 @@
         <th><a class="header" href="?o=age">Last Change</a></th>
         <th></th>
       </tr>
-<?php foreach($projects as $project) { ?>
+<?php foreach($projects as $proj) { ?>
       <tr class="dark">
-      <td><a class="list" href="<?php echo '/'.$this->url('p='.$project['name']) ?>"><?php echo "${project['name']}" ?></a></td>
-      <td><a class="list" title="<?php echo $project['description'] ?>" href="<?php echo "/${project['name']}" ?>"><?php echo $project['description'] ?></a></td>
-        <td><i>felix</i></td>
-        <td class="age2">5 days ago</td>
-        <td class="link"><a href="/archlinux.git">summary</a> | <a href="/archlinux.git/shortlog">shortlog</a> | <a href="/archlinux.git/log">log</a> | <a href="/archlinux.git/tree">tree</a></td>
+      <td><a class="list" href="<?php echo '/'.$this->link("p={$proj['name']};a=summary") ?>"><?php echo $proj['name'] ?></a></td>
+      <td><a class="list" title="<?php echo $proj['description'] ?>" href="<?php echo '/'.$this->link("p={$proj['name']};a=summary") ?>"><?php echo $proj['description'] ?></a></td>
+        <td><em><?php echo $proj['head']->author->name ?></em></td>
+        <td class="age2"><?php echo $this->date($proj['head']->committer->time) ?></td>
+        <td class="link"><a href="<?php echo '/'.$this->link("p={$proj['name']};a=summary") ?>">summary</a> | <a href="<?php echo '/'.$this->link("p={$proj['name']};a=shortlog") ?>">shortlog</a> | <a href="<?php echo '/'.$this->link("p={$proj['name']};a=log") ?>">log</a> | <a href="<?php echo '/'.$this->link("p={$proj['name']};a=tree") ?>">tree</a></td>
       </tr>
 <?php } ?>
     </table>

@@ -6,10 +6,12 @@ class Template {
   private $data = array();
   private $cacheKey = '';
   private $expiry = 3600;
+  private $config;
 
   public function __construct($template, $key, $data) {
     $this->cacheKey = $key;
-    if($GLOBALS['config']['caching'] && $this->validCache()){
+    $this->config = &$GLOBALS['config'];
+    if($this->config['caching'] && $this->validCache()){
       $this->output = $this->readCache();
     } else {
       $this->data = $data;
@@ -18,7 +20,7 @@ class Template {
       $this->output .= $this->loadTemplate('footer');
       $this->processTemplate();
       
-      if($GLOBALS['config']['caching']){
+      if($this->config['caching']){
         $this->writeCache();
       }
     }
@@ -45,13 +47,13 @@ class Template {
 
   private function loadTemplate($file) {
     if(strpos($file,'/') !== 0) {
-      $file = $GLOBALS['config']['template_path'] . '/' . $file;
+      $file = $this->config['template_path'] . '/' . $file;
     }
     return file_get_contents($file.'.phtml');
   }
 
   private function cacheFile(){
-    return $GLOBALS['config']['cache_path'] . '/' . $this->cacheKey . '.cache.txt';
+    return $this->config['cache_path'] . '/' . $this->cacheKey . '.cache.txt';
   }
 
   private function writeCache(){
@@ -72,7 +74,7 @@ class Template {
   // return overall output
   public function getHTML(){
     // return compressed output
-    if($GLOBALS['config']['gzip_output'] && strpos($_SERVER['HTTP_ACCEPT_ENCODING'],'gzip') === true){
+    if($this->config['gzip_output'] && strpos($_SERVER['HTTP_ACCEPT_ENCODING'],'gzip') === true){
       ob_start();
       echo $this->output;
       // crunch (X)HTML content & compress it with gzip
@@ -87,13 +89,51 @@ class Template {
     header('Content-Encoding: gzip');
   }
 
-  public function url($query) {
+  // TODO
+  public function link($query) {
     $ary = split_query_string($query);
-    if(array_key_exists('p',$ary)) {
-      $url = '?p='.$ary['p'];
-    } elseif(array_key_exists('a',$ary)){
-      $url .= 'a='.$ary['a'];
+    foreach($ary as $k => $v){
+      $url[] = $k.'='.$v;
     }
-    return $url;
+    return '?'.implode(';',$url);
   }
+
+  public function date($date,$abs=false) {
+    if(!$abs && $this->config['relative_dates']) {
+      return $this->relativeDate($date);
+    } else {
+      return strftime('%Y-%m-%d %H:%M', $date);
+    }
+  }
+
+  private function plural($num) {
+    if ($num != 1)
+      return "s";
+  }
+
+  private function relativeDate($date) {
+    if($date instanceof String) {
+      $date = strtotime($date);
+    }
+    $diff = time() - $date;
+    //if ($diff<60)
+    //  return $diff . " second" . $this->plural($diff) . " ago";
+    $diff = round($diff/60);
+    if ($diff<60)
+      return $diff . " minute" . $this->plural($diff) . " ago";
+    $diff = round($diff/60);
+    if ($diff<24)
+      return $diff . " hour" . $this->plural($diff) . " ago";
+    $diff = round($diff/24);
+    if ($diff<31)
+      return $diff . " day" . $this->plural($diff) . " ago";
+    //$diff = round($diff/7);
+    //if ($diff<4)
+    //  return $diff . " week" . $this->plural($diff) . " ago";
+    $diff = round($diff/31);
+    if ($diff<12)
+      return $diff . " month" . $this->plural($diff) . " ago";
+    return "on " . date("Y M D", $date);
+  }
+
 }
