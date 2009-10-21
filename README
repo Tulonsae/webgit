@@ -1,0 +1,10 @@
+webgit is just another clone of Gitweb, the official GIT web client.
+
+It is written in PHP5 due to its availability on most hosts. It uses the glip
+PHP5 library that interacts with GIT repositories directly, no calls to the git
+CLI client.
+
+The other existing PHP clients are either broken or do not implement some
+features I like (ie. checking for git-daemon-export-ok for use with gitosis).
+That said, this is a work in progress and is incomplete also!
+
