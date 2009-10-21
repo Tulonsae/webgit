@@ -9,7 +9,7 @@
       </tr>
 <?php foreach($projects as $project) { ?>
       <tr class="dark">
-      <td><a class="list" href="<?php echo "/${project['name']}" ?>"><?php echo "${project['name']}" ?></a></td>
+      <td><a class="list" href="<?php echo '/'.$this->url('p='.$project['name']) ?>"><?php echo "${project['name']}" ?></a></td>
       <td><a class="list" title="<?php echo $project['description'] ?>" href="<?php echo "/${project['name']}" ?>"><?php echo $project['description'] ?></a></td>
         <td><i>felix</i></td>
         <td class="age2">5 days ago</td>

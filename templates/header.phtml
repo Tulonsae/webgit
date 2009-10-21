@@ -6,16 +6,16 @@
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
     <meta name="generator" content="webgit glip"/>
     <meta name="robots" content="index, nofollow"/>
-    <title><?php echo $payload['config']['site_name'] ?></title>
-    <base href="<?php echo $payload['config']['base_url'] ?>" />
+    <title><?php echo $config['site_name'] ?></title>
+    <base href="<?php echo $config['base_url'] ?>" />
     <link rel="stylesheet" type="text/css" href="/gitweb.css"/>
-    <link rel="alternate" title="<?php echo $payload['config']['site_name'] ?> projects list" href="?a=project_index" type="text/plain; charset=utf-8" />
-    <link rel="alternate" title="<?php echo $payload['config']['site_name'] ?> projects feeds" href="?a=opml" type="text/x-opml" />
+    <link rel="alternate" title="<?php echo $config['site_name'] ?> projects list" href="?a=project_index" type="text/plain; charset=utf-8" />
+    <link rel="alternate" title="<?php echo $config['site_name'] ?> projects feeds" href="?a=opml" type="text/x-opml" />
     <link rel="shortcut icon" href="/git-favicon.png" type="image/png" />
   </head>
   <body>
     <div class="page_header"> 
-      <a title="git homepage" href="http://git.or.cz/"><img src="/git-logo.png" width="72" height="27" alt="git" class="logo"/></a><a href="/">projects</a> /<?php if(isset($payload['project'])){ ?> <a href="?p=<?php echo $payload['project']['name'] ?>;a=summary"><?php echo $payload['project']['name'] ?></a> / tree<?php } ?>
+      <a title="git homepage" href="http://git.or.cz/"><img src="/git-logo.png" width="72" height="27" alt="git" class="logo"/></a><a href="/">projects</a> /<?php if(isset($project)){ ?> <a href="?p=<?php echo $project['name'] ?>;a=summary"><?php echo $project['name'] ?></a> / <?php echo $request['a']; } ?>
     </div>
     <!--
     <form method="get" action="" enctype="application/x-www-form-urlencoded"> 

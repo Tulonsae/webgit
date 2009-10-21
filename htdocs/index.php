@@ -1,29 +1,29 @@
 <?php
 
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ALL);
 
 require(dirname(__FILE__) . './../include/config.php');
 
 $payload = array('config' => $config);
+$repository = new Repository();
 
 // parse the url
 $payload['request'] = get_request();
 
 // got a project
 if(isset($payload['request']['p']) && file_exists($config['project_root'] . '/' . $payload['request']['p'])){
-  $payload['project'] = get_project_info($config['project_root'] . '/' . $request['p']);
+  $payload['project'] = $repository->getProject($payload['request']['p']);
 
 }else{ // no project, summary
-  $payload['projects'] = array();
-  foreach(array_diff(scandir($config['project_root']), array('.','..')) as $project_dir) {
-    if($project = get_project_info($config['project_root'] . '/' . $project_dir)){
-      $payload['projects'][] = $project;
-    }
-  }
+  $payload['projects'] = $repository->getProjectList();
 }
-switch($payload['request']['a']){
-case 'xxsummary':
-default:
+
+if(isset($payload['request']['p'])) {
+  switch($payload['request']['a']) {
+  default:
+    $template = new Template('summary',$payload['request']['p'],$payload);
+  }
+} else {
   $template = new Template('repository','repository',$payload);
 }
 echo $template->getHTML();

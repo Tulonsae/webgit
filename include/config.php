@@ -9,7 +9,7 @@ $default_config = array(
   'list'          => false,
   'export_ok'     => false,
   'strict_export' => false,
-  'base_url'      => 'http' . ($_SERVER['HTTPS'] ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . '/',
+  'base_url'      => 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . '/',
   'template_path' => $config['base_path'] . '/templates',
   'gzip_output'   => false,
   'caching'       => false,
@@ -18,9 +18,10 @@ $default_config = array(
 
 require($config['include_path'] . '/functions.php');
 require($config['include_path'] . '/template.class.php');
+require($config['include_path'] . '/repository.class.php');
+require($config['include_path'] . '/project.class.php');
 
 $config = array_merge($config, $default_config);
-
 
 $local_config = array();
 include($config['include_path'] . '/local.inc');

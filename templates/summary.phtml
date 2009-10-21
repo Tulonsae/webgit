@@ -1,74 +1,28 @@
-summary.phtml
-
-    <table class="project_list">
-      <tr>
-        <th>Project</th>
-        <th><a class="header" href="?o=descr">Description</a></th>
-        <th><a class="header" href="?o=owner">Owner</a></th>
-        <th><a class="header" href="?o=age">Last Change</a></th>
-        <th></th>
-      </tr>
+    <!-- summary.phtml -->
+    <div class="title">&nbsp;</div>
+    <table class="projects_list">
+      <tr id="metadata_desc"><td>description</td><td><?php echo $project['description'] ?></td></tr>
+      <tr id="metadata_owner"><td>owner</td><td>felix</td></tr>
+      <tr id="metadata_lchange"><td>last change</td><td>Wed, 14 Oct 2009 15:06:52 +0000</td></tr>
+      <tr class="metadata_url"><td>URL</td><td>git://git.seconddrawer.com.au/archlinux.git</td></tr>
+    </table>
+    <div class="header">
+      <a class="title" href="?p=archlinux.git;a=shortlog">shortlog</a>
+    </div>
+    <table class="shortlog">
       <tr class="dark">
-        <td><a class="list" href="/archlinux.git">archlinux.git</a></td>
-        <td><a class="list" title="My Arch Linux packages" href="/archlinux.git">My Arch Linux packages</a></td>
+        <td title="2009-10-14"><i>6 days ago</i></td>
         <td><i>felix</i></td>
-        <td class="age2">5 days ago</td>
-        <td class="link"><a href="/archlinux.git">summary</a> | <a href="/archlinux.git/shortlog">shortlog</a> | <a href="/archlinux.git/log">log</a> | <a href="/archlinux.git/tree">tree</a></td>
-      </tr>
-      <tr class="light">
-        <td><a class="list" href="/awesome-configs.git">awesome-configs.git</a></td>
-        <td><a class="list" title="Configuration files for the Awesome window manager" href="/awesome-configs.git">Configuration files for the Awesome window manager</a></td>
-        <td><i>felix</i></td>
-        <td class="age1">23 hours ago</td>
-        <td class="link"><a href="/awesome-configs.git">summary</a> | <a href="/awesome-configs.git/shortlog">shortlog</a> | <a href="/awesome-configs.git/log">log</a> | <a href="/awesome-configs.git/tree">tree</a></td>
-      </tr>
-      <tr class="dark">
-        <td><a class="list" href="/galoader.git">galoader.git</a></td>
-        <td><a class="list" title="Google Analytics loader" href="/galoader.git">Google Analytics loader</a></td>
-        <td><i>felix</i></td>
-        <td class="age2">3 months ago</td>
-        <td class="link"><a href="/galoader.git">summary</a> | <a href="/galoader.git/shortlog">shortlog</a> | <a href="/galoader.git/log">log</a> | <a href="/galoader.git/tree">tree</a></td>
-      </tr>
-      <tr class="light">
-        <td><a class="list" href="/lahu_keyboard.git">lahu_keyboard.git</a></td>
-        <td><a class="list" title="Lahu keyboard layouts for Linux &amp; Windows" href="/lahu_keyboard.git">Lahu keyboard layouts for Linux &amp; Windows</a></td>
-        <td><i>felix</i></td>
-        <td class="age2">4 months ago</td>
-        <td class="link"><a href="/lahu_keyboard.git">summary</a> | <a href="/lahu_keyboard.git/shortlog">shortlog</a> | <a href="/lahu_keyboard.git/log">log</a> | <a href="/lahu_keyboard.git/tree">tree</a></td>
-      </tr>
-      <tr class="dark">
-        <td><a class="list" href="/learning_lahu.git">learning_lahu.git</a></td>
-        <td><a class="list" title="My attempt at Lahu 101" href="/learning_lahu.git">My attempt at Lahu 101</a></td>
-        <td><i>felix</i></td>
-        <td class="age2">8 months ago</td>
-        <td class="link"><a href="/learning_lahu.git">summary</a> | <a href="/learning_lahu.git/shortlog">shortlog</a> | <a href="/learning_lahu.git/log">log</a> | <a href="/learning_lahu.git/tree">tree</a></td>
-      </tr>
-      <tr class="light">
-        <td><a class="list" href="/maildir2gmail.git">maildir2gmail.git</a></td>
-        <td><a class="list" title="Maildir to GMail converter" href="/maildir2gmail.git">Maildir to GMail converter</a></td>
-        <td><i>felix</i></td>
-        <td class="age2">4 months ago</td>
-        <td class="link"><a href="/maildir2gmail.git">summary</a> | <a href="/maildir2gmail.git/shortlog">shortlog</a> | <a href="/maildir2gmail.git/log">log</a> | <a href="/maildir2gmail.git/tree">tree</a></td>
-      </tr>
-      <tr class="dark">
-        <td><a class="list" href="/okra.git">okra.git</a></td>
-        <td><a class="list" title="Website analysis tool with plugins" href="/okra.git">Website analysis tool with plugins</a></td>
-        <td><i>felix</i></td>
-        <td class="age2">2 months ago</td>
-        <td class="link"><a href="/okra.git">summary</a> | <a href="/okra.git/shortlog">shortlog</a> | <a href="/okra.git/log">log</a> | <a href="/okra.git/tree">tree</a></td>
-      </tr>
-      <tr class="light">
-        <td><a class="list" href="/templates.git">templates.git</a></td>
-        <td><a class="list" title="Various templates to start with" href="/templates.git">Various templates to start with</a></td>
-        <td><i>felix</i></td>
-        <td class="age2">11 days ago</td>
-        <td class="link"><a href="/templates.git">summary</a> | <a href="/templates.git/shortlog">shortlog</a> | <a href="/templates.git/log">log</a> | <a href="/templates.git/tree">tree</a></td>
-      </tr>
-      <tr class="dark">
-        <td><a class="list" href="/tinydns-dynamic.git">tinydns-dynamic.git</a></td>
-        <td><a class="list" title="Dynamic DNS server and client for djbdns DNS server" href="/tinydns-dynamic.git">Dynamic DNS server and client for djbdns DNS server</a></td>
-        <td><i>felix</i></td>
-        <td class="age2">11 months ago</td>
-        <td class="link"><a href="/tinydns-dynamic.git">summary</a> | <a href="/tinydns-dynamic.git/shortlog">shortlog</a> | <a href="/tinydns-dynamic.git/log">log</a> | <a href="/tinydns-dynamic.git/tree">tree</a></td>
+        <td><a class="list subject" href="?p=archlinux.git;a=commit;h=ba6f5537dff07d2191705a654033ae55d40745ca">added python-dictdlib and moby <span class="refs"> <span class="head" title="heads/master"><a href="?p=archlinux.git;a=shortlog;h=refs/heads/master">master</a></span></span></a></td>
+        <td class="link"><a href="?p=archlinux.git;a=commit;h=ba6f5537dff07d2191705a654033ae55d40745ca">commit</a> | <a href="?p=archlinux.git;a=commitdiff;h=ba6f5537dff07d2191705a654033ae55d40745ca">commitdiff</a> | <a href="?p=archlinux.git;a=tree;h=ba6f5537dff07d2191705a654033ae55d40745ca;hb=ba6f5537dff07d2191705a654033ae55d40745ca">tree</a> | <a title="in format: tar.gz" href="?p=archlinux.git;a=snapshot;h=ba6f5537dff07d2191705a654033ae55d40745ca;sf=tgz">snapshot</a></td>
       </tr>
     </table>
+    <div class="header">
+      <a class="title" href="?p=archlinux.git;a=heads">heads</a>
+    </div>
+    <table class="heads">
+      <tr class="dark">
+        <td><i>6 days ago</i></td>
+        <td class="current_head"><a class="list name" href="?p=archlinux.git;a=shortlog;h=refs/heads/master">master</a></td>
+        <td class="link"><a href="?p=archlinux.git;a=shortlog;h=refs/heads/master">shortlog</a> | <a href="?p=archlinux.git;a=log;h=refs/heads/master">log</a> | <a href="?p=archlinux.git;a=tree;h=refs/heads/master;hb=master">tree</a></td>
+    </tr></table>

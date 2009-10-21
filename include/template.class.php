@@ -86,4 +86,14 @@ class Template {
   public function sendEncodingHeader(){
     header('Content-Encoding: gzip');
   }
+
+  public function url($query) {
+    $ary = split_query_string($query);
+    if(array_key_exists('p',$ary)) {
+      $url = '?p='.$ary['p'];
+    } elseif(array_key_exists('a',$ary)){
+      $url .= 'a='.$ary['a'];
+    }
+    return $url;
+  }
 }
