@@ -1,0 +1,13 @@
+    <!-- shortlog.phtml -->
+    <div class="header">
+      <a class="title" href="<?php echo $this->link("p={$project['name']};a=summary") ?>"><?php echo $project['name'] ?></a>
+    </div>
+    <?php echo $this->includeTemplate('shortlogtable') ?>
+    <div class="page_footer">
+<?php if(isset($project['description'])){ ?>
+      <div class="page_footer_text"><?php echo $project['description'] ?></div>
+<?php } ?>
+      <a class="rss_logo" href="?a=opml">OPML</a>
+      <a class="rss_logo" href="?a=project_index">TXT</a>
+    </div>
+

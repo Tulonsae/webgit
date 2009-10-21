@@ -4,24 +4,12 @@
       <tr id="metadata_desc"><td>description</td><td><?php echo $project['description'] ?></td></tr>
       <tr id="metadata_owner"><td>owner</td><td><?php echo $project['head']->author->name ?></td></tr>
       <tr id="metadata_lchange"><td>last change</td><td><?php echo strftime("%a, %d %b %Y %H:%M:%S %z",$project['head']->committer->time) ?></td></tr>
-      <tr class="metadata_url"><td>URL</td><td>git://git.seconddrawer.com.au/archlinux.git</td></tr>
+      <tr class="metadata_url"><td>URL</td><td><?php echo $config['git_url'].$project['name'] ?></td></tr>
     </table>
     <div class="header">
       <a class="title" href="?p=archlinux.git;a=shortlog">shortlog</a>
     </div>
-    <table class="shortlog">
-      <?php foreach($history as $commit) { ?>
-      <tr class="<?php ($cycle == 'dark') ? $cycle='light' : $cycle='dark'; echo $cycle ?>">
-      <td title="<?php echo $this->date($commit['time'],true) ?>"><em><?php echo $this->date($commit['time']) ?></em></td>
-        <td><em><?php echo $commit['author'] ?></em></td>
-        <td>
-          <a class="list subject" href="<?php echo $this->link("p={$project['name']};a=commit;h={$commit['commit_id']->hex()}") ?>"><?php echo $commit['summary'] ?></a><?php if($project['head']->getSha() == $commit['commit_id']) { ?> <span class="refs"><span class="head" title="heads/master"><a href="?p=archlinux.git;a=shortlog;h=refs/heads/master">master</a></span></span><?php } ?>
-        </td>
-        <td class="link">
-          <a href="<?php echo $this->link("p={$project['name']};a=commit;h={$commit['commit_id']->hex()}") ?>">commit</a> | <a href="<?php echo $this->link("p={$project['name']};a=commitdiff;h={$commit['commit_id']->hex()}") ?>">commitdiff</a> | <a href="<?php echo $this->link("p={$project['name']};a=tree;h={$commit['commit_id']->hex()};hb={$commit['commit_id']->hex()}") ?>">tree</a> | <a title="in format: tar.gz" href="<?php echo $this->link("p={$project['name']};a=snapshot;h={$commit['commit_id']->hex()};sf=tgz") ?>">snapshot</a></td>
-      </tr>
-      <?php } ?>
-    </table>
+    <?php echo $this->includeTemplate('shortlogtable') ?>
     <div class="header">
       <a class="title" href="?p=archlinux.git;a=heads">heads</a>
     </div>
@@ -30,4 +18,12 @@
         <td><i>6 days ago</i></td>
         <td class="current_head"><a class="list name" href="?p=archlinux.git;a=shortlog;h=refs/heads/master">master</a></td>
         <td class="link"><a href="?p=archlinux.git;a=shortlog;h=refs/heads/master">shortlog</a> | <a href="?p=archlinux.git;a=log;h=refs/heads/master">log</a> | <a href="?p=archlinux.git;a=tree;h=refs/heads/master;hb=master">tree</a></td>
-    </tr></table>
+      </tr>
+    </table>
+    <div class="page_footer">
+<?php if(isset($project['description'])){ ?>
+      <div class="page_footer_text"><?php echo $project['description'] ?></div>
+<?php } ?>
+      <a class="rss_logo" href="?a=opml">OPML</a>
+      <a class="rss_logo" href="?a=project_index">TXT</a>
+    </div>

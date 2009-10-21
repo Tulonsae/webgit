@@ -1,0 +1,14 @@
+    <!-- shortlogtable -->
+    <table class="shortlog">
+      <?php foreach($history as $commit) : ?>
+      <tr class="<?php ($cycle == 'dark') ? $cycle='light' : $cycle='dark'; echo $cycle ?>">
+      <td title="<?php echo $this->date($commit['time'],true) ?>"><em><?php echo $this->date($commit['time']) ?></em></td>
+        <td><em><?php echo $commit['author'] ?></em></td>
+        <td>
+          <a class="list subject" href="<?php echo $this->link("p={$project['name']};a=commit;h={$commit['commit_id']->hex()}") ?>"><?php echo $commit['summary'] ?></a><?php if($project['head']->getSha() == $commit['commit_id']) { ?> <span class="refs"><span class="head" title="heads/master"><a href="?p=archlinux.git;a=shortlog;h=refs/heads/master">master</a></span></span><?php } ?>
+        </td>
+        <td class="link">
+          <a href="<?php echo $this->link("p={$project['name']};a=commit;h={$commit['commit_id']->hex()}") ?>">commit</a> | <a href="<?php echo $this->link("p={$project['name']};a=commitdiff;h={$commit['commit_id']->hex()}") ?>">commitdiff</a> | <a href="<?php echo $this->link("p={$project['name']};a=tree;h={$commit['commit_id']->hex()};hb={$commit['commit_id']->hex()}") ?>">tree</a> | <a title="in format: tar.gz" href="<?php echo $this->link("p={$project['name']};a=snapshot;h={$commit['commit_id']->hex()};sf=tgz") ?>">snapshot</a></td>
+      </tr>
+      <?php endforeach ?>
+    </table>

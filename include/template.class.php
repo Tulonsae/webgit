@@ -40,7 +40,7 @@ class Template {
       $$k = $v; 
     } 
     ob_start(); 
-    eval("?>" . $this->output . "<?"); 
+    eval("?>" . $this->output); 
     $this->output = ob_get_contents(); 
     ob_end_clean();
   }
@@ -104,6 +104,17 @@ class Template {
     } else {
       return strftime('%Y-%m-%d %H:%M', $date);
     }
+  }
+
+  public function includeTemplate($template) {
+    foreach($this->data as $k => $v) { 
+      $$k = $v; 
+    } 
+    ob_start(); 
+    eval("?>" . $this->loadTemplate($template)); 
+    $out = ob_get_contents(); 
+    ob_end_clean();
+    return $out;
   }
 
   private function plural($num) {

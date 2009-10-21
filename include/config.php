@@ -10,6 +10,7 @@ $default_config = array(
   'export_ok'     => false,
   'strict_export' => false,
   'base_url'      => 'http' . (isset($_SERVER['HTTPS']) ? 's' : '') . '://' . $_SERVER['SERVER_NAME'] . '/',
+  'git_url'       => 'git' . '://' . $_SERVER['SERVER_NAME'] . '/',
   'template_path' => $config['base_path'] . '/templates',
   'gzip_output'   => false,
   'caching'       => false,

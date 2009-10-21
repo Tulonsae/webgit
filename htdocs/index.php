@@ -14,6 +14,11 @@ if(isset($payload['request']['p'])) {
   $project = $repository->getProject($payload['request']['p']);
 
   switch($payload['request']['a']) {
+  case 'shortlog':
+    $payload['history'] = $project->getHistory();
+    $payload['project'] = $project;
+    $template = new Template('shortlog',$payload['request']['p'],$payload);
+    break;
   default:
     $payload['history'] = $project->getHistory();
     $payload['project'] = $project;
